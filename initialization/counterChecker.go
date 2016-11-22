@@ -17,6 +17,9 @@ var thermometers = []orm.Thermometer {
 	{ Code:	"HEIZ_AUSSEN", Name: "Heizung Aussentemperatur"},
 	{ Code:	"HEIZ_KESSEL", Name: "Heizung Kesseltemperatur"},
 	{ Code:	"HEIZ_BRAUCHW", Name: "Heizung Brauchwassertemperatur"},
+	{ Code:	"THERMO_1", Name: "Thermometer 1"},
+	{ Code:	"THERMO_2", Name: "Thermometer 2"},
+	{ Code:	"THERMO_3", Name: "Thermometer 3"},
 }
 
 var flags = []orm.Flag {
