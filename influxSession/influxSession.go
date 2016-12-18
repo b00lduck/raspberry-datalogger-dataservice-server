@@ -142,7 +142,7 @@ func (i influxSession) IncrementSeries(series string, value int64) (int64, error
 
 func (i influxSession) InitDb() error {
     log.WithField("database", i.database).Info("InfluxSession: Creating database if not exists...")
-    _, err := i.QueryDB("CREATE DATABASE IF NOT EXISTS " + i.database)
+    _, err := i.QueryDB("CREATE DATABASE " + i.database)
     if err != nil {
         return err
     }

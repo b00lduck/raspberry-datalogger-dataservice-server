@@ -22,7 +22,10 @@ func StartServer(influxSessionFactory func() influxSession.InfluxSession) {
     isf = influxSessionFactory
 
     initSession := isf()
-    initSession.InitDb()
+    err := initSession.InitDb()
+    if err != nil {
+        log.Fatal(err)
+    }
     initSession.Close()
 
 	router := web.New(Context{}).
