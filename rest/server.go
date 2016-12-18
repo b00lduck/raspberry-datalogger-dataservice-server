@@ -82,8 +82,7 @@ func (c *Context) parseUintQueryParameter(rw web.ResponseWriter, name string) (r
 
 	ret,err = parseUintFromString(s)
 	if err != nil {
-		log.Println("Error parsing uint64 " + name +": " + s)
-		log.Println(err)
+		log.WithField("err", err).WithField("s", s).WithField("name", name).Error("Error parsing uint64")
 		rw.WriteHeader(http.StatusBadRequest)
 		rw.Write([]byte("Malformed parameter " + name))
 	}

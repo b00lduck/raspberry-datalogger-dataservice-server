@@ -36,7 +36,7 @@ func NewInfluxSession(host, database, username, password string) InfluxSession {
         Password: password,
     })
     if err != nil {
-        log.Fatalln(err)
+        log.Fatal(err)
     }
 
     obj := influxSession{
