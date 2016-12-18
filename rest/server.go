@@ -48,7 +48,6 @@ func StartServer(influxSessionFactory func() influxSession.InfluxSession) {
 }
 
 func (c *Context) QueryVarsMiddleware(rw web.ResponseWriter, r *web.Request, next web.NextMiddlewareFunc) {
-
 	values, err := parseQueryParams(rw, r)
 	if err != nil {
 		log.Println(err)
@@ -56,8 +55,6 @@ func (c *Context) QueryVarsMiddleware(rw web.ResponseWriter, r *web.Request, nex
 		rw.Write([]byte("Malformed URL"))
 		return
 	}
-
-    c.influxSession = isf()
 	c.values = &values
 	next(rw, r)
 }
