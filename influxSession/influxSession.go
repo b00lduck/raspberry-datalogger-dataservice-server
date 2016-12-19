@@ -28,7 +28,7 @@ func NewInfluxSession(host, database, username, password string) InfluxSession {
     log.WithField("url", url).
         WithField("username", username).
         WithField("password", "*hidden*").
-        Info("Creating InfluxDB client...")
+        Debug("Creating InfluxDB client...")
 
     client, err := client.NewHTTPClient(client.HTTPConfig{
         Addr: url,
@@ -54,7 +54,7 @@ func (i influxSession) Close() {
 
 func (i influxSession) QueryDB(cmd string) (res []client.Result, err error) {
 
-    log.WithField("cmd", cmd).Info("InfluxSession: Querying")
+    log.WithField("cmd", cmd).Debug("InfluxSession: Querying")
 
     q := client.Query{
         Command:  cmd,
@@ -141,7 +141,7 @@ func (i influxSession) IncrementSeries(series string, value float64) (float64, e
 }
 
 func (i influxSession) InitDb() error {
-    log.WithField("database", i.database).Info("InfluxSession: Creating database if not exists...")
+    log.WithField("database", i.database).Debug("InfluxSession: Creating database if not exists...")
     _, err := i.QueryDB("CREATE DATABASE " + i.database)
     if err != nil {
         return err
