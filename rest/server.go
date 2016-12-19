@@ -65,26 +65,8 @@ func (c *Context) InfluxSessionMiddleware(rw web.ResponseWriter, r *web.Request,
     c.influxSession.Close()
 }
 
-func parseUintFromString(s string) (ret uint64, err error) {
-	ret, err = strconv.ParseUint(s, 10, 64)
-	return
-}
-
-func (c *Context) parseUintQueryParameter(rw web.ResponseWriter, name string) (ret uint64, err error) {
-
-	s := c.values.Get(name)
-	if s == "" {
-		return 0, nil
-	}
-
-	ret,err = parseUintFromString(s)
-	if err != nil {
-		log.WithField("err", err).WithField("s", s).WithField("name", name).Error("Error parsing uint64")
-		rw.WriteHeader(http.StatusBadRequest)
-		rw.Write([]byte("Malformed parameter " + name))
-	}
-
-	return
+func parseFloatFromString(s string) (float64, error) {
+    return strconv.ParseFloat(s, 64)
 }
 
 func (c *Context) simpleRead(rw web.ResponseWriter, req *web.Request) {
@@ -104,15 +86,15 @@ func (c *Context) simpleWrite(rw web.ResponseWriter, req *web.Request) {
     hah, err := ioutil.ReadAll(req.Body);
     fmt.Println(hah)
     if err != nil {
-        fmt.Println(err)
+        log.Error(err)
         rw.WriteHeader(http.StatusInternalServerError)
         rw.Write([]byte("Error reading body"))
         return
     }
 
-    newReading,err := parseUintFromString(string(hah))
+    newReading,err := parseFloatFromString(string(hah))
     if err != nil {
-        fmt.Println(err)
+        log.Error(err)
         rw.WriteHeader(http.StatusBadRequest)
         rw.Write([]byte("Malformed value"))
         return
