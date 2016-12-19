@@ -15,7 +15,7 @@ func (c *Context) CounterByCodeHandler(rw web.ResponseWriter, req *web.Request) 
 func (c *Context) CounterByCodeTickHandler(rw web.ResponseWriter, req *web.Request) {
 
     code := parseStringPathParameter(req, "code")
-    newVal, err := c.influxSession.IncrementSeries(code, 1)
+    newVal, err := c.influxSession.IncrementSeries(code, 0.1)
     if err != nil {
         log.Error(err)
         rw.WriteHeader(500)
