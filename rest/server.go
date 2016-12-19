@@ -95,7 +95,7 @@ func (c *Context) simpleRead(rw web.ResponseWriter, req *web.Request) {
         rw.WriteHeader(500)
     } else {
         rw.WriteHeader(200)
-        rw.Write([]byte(fmt.Sprintf("%d", newVal)))
+        rw.Write([]byte(fmt.Sprintf("%f", newVal)))
     }
 }
 
@@ -118,13 +118,13 @@ func (c *Context) simpleWrite(rw web.ResponseWriter, req *web.Request) {
         return
     }
 
-    err = c.influxSession.AddPoint(code, int64(newReading))
+    err = c.influxSession.AddPoint(code, float64(newReading))
     if err != nil {
         log.Error(err)
         rw.WriteHeader(500)
     } else {
         rw.WriteHeader(200)
-        rw.Write([]byte(fmt.Sprintf("%d", newReading)))
+        rw.Write([]byte(fmt.Sprintf("%f", newReading)))
     }
 }
 

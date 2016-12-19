@@ -10,9 +10,9 @@ import (
 
 type InfluxSession interface {
     QueryDB(cmd string) (res []client.Result, err error)
-    AddPoint(series string, value int64) error
-    IncrementSeries(series string, value int64) (int64, error)
-    GetLastValue(series string) (int64, error)
+    AddPoint(series string, value float64) error
+    IncrementSeries(series string, value float64) (float64, error)
+    GetLastValue(series string) (float64, error)
     InitDb() error
     Close()
 }
@@ -71,7 +71,7 @@ func (i influxSession) QueryDB(cmd string) (res []client.Result, err error) {
     return res, nil
 }
 
-func (i influxSession) AddPoint(series string, value int64) error {
+func (i influxSession) AddPoint(series string, value float64) error {
 
     log.WithField("series", series).WithField("value", value).Info("InfluxSession: Adding new point")
 
@@ -105,7 +105,7 @@ func (i influxSession) AddPoint(series string, value int64) error {
     return nil
 }
 
-func (i influxSession) GetLastValue(series string) (int64, error) {
+func (i influxSession) GetLastValue(series string) (float64, error) {
 
     log.WithField("series", series).Info("InfluxSession: Getting last value")
 
@@ -120,10 +120,10 @@ func (i influxSession) GetLastValue(series string) (int64, error) {
         return 0, nil
     }
 
-    return res[0].Series[0].Values[0][1].(json.Number).Int64()
+    return res[0].Series[0].Values[0][1].(json.Number).Float64()
 }
 
-func (i influxSession) IncrementSeries(series string, value int64) (int64, error) {
+func (i influxSession) IncrementSeries(series string, value float64) (float64, error) {
 
     log.WithField("series", series).WithField("value", value).Info("InfluxSession: Increment")
 
