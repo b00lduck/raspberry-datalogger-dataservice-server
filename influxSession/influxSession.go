@@ -48,7 +48,7 @@ func NewInfluxSession(host, database, username, password string) InfluxSession {
 }
 
 func (i influxSession) Close() {
-    log.Info("InfluxSession: Closing")
+    log.Debug("InfluxSession: Closing")
     i.client.Close()
 }
 
