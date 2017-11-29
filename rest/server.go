@@ -38,8 +38,10 @@ func StartServer(influxSessionFactory func() influxSession.InfluxSession) {
 	Put ("/counter/:code",      		(*Context).CounterByCodeCorrectHandler).
     Get("/thermometer/:code", 		    (*Context).ThermometerByCodeHandler).
 	Put("/thermometer/:code",       	(*Context).ThermometerByCodeAddReadingHandler).
-    Get("/flag/:code", 		            (*Context).FlagByCodeHandler).
-    Put("/flag/:code",     		    	(*Context).FlagByCodeChangeStateHandler)
+    Get("/flag/:code", 		        (*Context).FlagByCodeHandler).
+    Put("/flag/:code",     	     	(*Context).FlagByCodeChangeStateHandler).
+    Get("/percentage/:code", 		    (*Context).PercentageByCodeHandler).
+    Put("/percentage/:code",     	    (*Context).PercentageByCodeAddReadingHandler)
 
 	e := http.ListenAndServe(":8080", router)
 	if e != nil {
