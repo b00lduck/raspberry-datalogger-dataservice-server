@@ -1,7 +1,7 @@
 package rest
 
 import (
-	"github.com/gocraft/web"
+    "github.com/gocraft/web"
 )
 
 // Get thermometer reading by code

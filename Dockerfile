@@ -1,10 +1,5 @@
-FROM rem/rpi-golang-1.7:latest
-
-WORKDIR /gopath/src/github.com/b00lduck/raspberry-datalogger-dataservice-server
-ENTRYPOINT ["raspberry-datalogger-dataservice-server"]
-
+FROM scratch
+USER 10000:10000
 EXPOSE 8080
-ADD . /gopath/src/github.com/b00lduck/raspberry-datalogger-dataservice-server/
-RUN go get
-RUN go build
-
+COPY ./app /app
+ENTRYPOINT ["/app"]

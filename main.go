@@ -2,8 +2,8 @@ package main
 
 import (
     log "github.com/Sirupsen/logrus"
-	"os"
-	"github.com/b00lduck/raspberry-datalogger-dataservice-server/rest"
+    "os"
+    "github.com/b00lduck/raspberry-datalogger-dataservice-server/rest"
     "github.com/b00lduck/raspberry-datalogger-dataservice-server/influxSession"
 )
 
@@ -20,7 +20,7 @@ func main() {
     }
 
     log.Info("Starting REST server...")
-	rest.StartServer(influxSessionFactory)
+    rest.StartServer(influxSessionFactory)
 }
 
 
