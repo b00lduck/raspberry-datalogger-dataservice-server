@@ -1,7 +1,7 @@
 package main
 
 import (
-    log "github.com/Sirupsen/logrus"
+    log "github.com/sirupsen/logrus"
     "os"
     "github.com/b00lduck/raspberry-datalogger-dataservice-server/rest"
     "github.com/b00lduck/raspberry-datalogger-dataservice-server/influxSession"

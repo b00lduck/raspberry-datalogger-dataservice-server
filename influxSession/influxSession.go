@@ -2,7 +2,7 @@ package influxSession
 
 import (
     "github.com/influxdata/influxdb/client/v2"
-    log "github.com/Sirupsen/logrus"
+    log "github.com/sirupsen/logrus"
     "fmt"
     "time"
     "encoding/json"

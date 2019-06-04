@@ -2,7 +2,7 @@ package rest
 import (
 	"net/http"
 	"github.com/gocraft/web"
-    log "github.com/Sirupsen/logrus"
+    log "github.com/sirupsen/logrus"
 	"strconv"
 	"net/url"
     "github.com/b00lduck/raspberry-datalogger-dataservice-server/influxSession"

@@ -3,7 +3,7 @@ package rest
 import (
     "github.com/gocraft/web"
     "fmt"
-    log "github.com/Sirupsen/logrus"
+    log "github.com/sirupsen/logrus"
 )
 
 // Get counter by code
@@ -21,7 +21,7 @@ func (c *Context) CounterByCodeTickHandler(rw web.ResponseWriter, req *web.Reque
         rw.WriteHeader(500)
     } else {
         rw.WriteHeader(200)
-        rw.Write([]byte(fmt.Sprintf("%d", newVal)))
+        rw.Write([]byte(fmt.Sprintf("%0.1f", newVal)))
     }
 
 }
